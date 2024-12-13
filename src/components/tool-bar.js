@@ -1,12 +1,12 @@
-import './tool-bar.css'
-import '../lib/jscolor.js'
+import "./tool-bar.css";
+import "../lib/jscolor.js";
 
-import circleIcon from '../icons/circle.svg'
-import hexagonIcon from '../icons/hexagon.svg'
-import lineIcon from '../icons/line.svg'
-import rectangleIcon from '../icons/rectangle.svg'
-import squareIcon from '../icons/square.svg'
-import triangleIcon from '../icons/triangle.svg'
+import circleIcon from "../icons/circle.svg";
+import hexagonIcon from "../icons/hexagon.svg";
+import lineIcon from "../icons/line.svg";
+import rectangleIcon from "../icons/rectangle.svg";
+import squareIcon from "../icons/square.svg";
+import triangleIcon from "../icons/triangle.svg";
 
 import { generateToolButtonMarkup } from "./tool-button.js";
 
@@ -17,9 +17,9 @@ export const generateToolBarMarkup = () => `
     </div>
 
     <div class="size-tool-box tool-box">
-      ${generateToolButtonMarkup('fas fa-brush', 'Brush')}
-      ${generateToolButtonMarkup('fas fa-eraser', 'Eraser')}
-      ${generateToolButtonMarkup('fab fa-tumblr', 'Text')}
+      ${generateToolButtonMarkup("fas fa-brush", "Brush")}
+      ${generateToolButtonMarkup("fas fa-eraser", "Eraser")}
+      ${generateToolButtonMarkup("fab fa-tumblr", "Text")}
     </div>
 
     <div class="brush-size-box">
@@ -30,20 +30,20 @@ export const generateToolBarMarkup = () => `
     </div>
 
     <div class="tool-box-one tool-box">
-      <i class="fas fa-fill-drip" title="Background Color"></i>
+      ${generateToolButtonMarkup("fas fa-fill-drip", "Background Color")}
       <label for="photo-input">
         <i class="fas fa-images" title="Photo"></i>
       </label>
-      <i class="fas fa-download" title="Save Local Storage"></i>
-      <i class="fas fa-upload" title="Load Local Storage"></i>
+      <input id="photo-input" type="file" class="upload-photo-btn" />
+      ${generateToolButtonMarkup("fas fa-download", "Save Local Storage")}
+      ${generateToolButtonMarkup("fas fa-upload", "Load Local Storage")}
     </div>
 
     <div class="tool-box-two tool-box">
-      <input id="photo-input" type="file" class="upload-photo-btn" />
-      <i class="fas fa-undo-alt" title="Undo"></i>
-      <i class="far fa-times-circle" title="Clear"></i>
-      <i class="fas fa-trash-alt" title="Clear Local Storage"></i>
-      <a class="download">
+      ${generateToolButtonMarkup("fas fa-undo-alt", "Undo")}
+      ${generateToolButtonMarkup("far fa-times-circle", "Clear")}
+      ${generateToolButtonMarkup("fas fa-trash-alt", "Clear Local Storage")}
+      <a class="download download-tool">
         <i class="far fa-save" title="Download"></i>
       </a>
     </div>
@@ -93,4 +93,4 @@ export const generateToolBarMarkup = () => `
       </div>
     </div>
   </div>
-`
+`;

@@ -4,13 +4,15 @@ import {
   getSecondaryColor,
   setCurrentLineWidth,
   setCurrentTool,
-  setPrimaryColor
+  setPrimaryColor,
+  setSecondaryColor
 } from "../state/state.js";
+import { createCanvas } from "./canvas.js";
 
 function handleToolSwitch(newToolName) {
   const currentToolName = getCurrentTool();
-  const currentToolIconNode = document.querySelector(`.${currentToolName}-tool > i`);
-  const newToolIconNode = document.querySelector(`.${newToolName}-tool > i`);
+  const currentToolIconNode = document.querySelector(`.${currentToolName}-btn > i`);
+  const newToolIconNode = document.querySelector(`.${newToolName}-btn > i`);
 
   currentToolIconNode.style.color = "white";
   newToolIconNode.style.color = "black";
@@ -38,4 +40,15 @@ export function selectEraserTool() {
 
 export function selectTextTool() {
   handleToolSwitch("text");
+}
+
+export function handleClearBtnClick(canvas, context) {
+  const secondaryColorBtn = document.querySelector(".color-two");
+
+  setSecondaryColor("#FFF");
+  secondaryColorBtn.style.backgroundColor = "white";
+
+  createCanvas(canvas, context);
+  renderActiveTool("clear");
+  setTimeout(selectBrushTool, 1500);
 }

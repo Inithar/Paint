@@ -3,7 +3,6 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 1fr 1fr;
-  /* column-gap: 20px; */
   width: 100%;
   height: 100px;
   background-color: gray;
@@ -231,7 +230,7 @@
 
 .tool {
   background-color: transparent;
-  border:  1px solid transparent;
+  border: 1px solid transparent;
 }
 
 .tool:focus-visible {
@@ -277,42 +276,42 @@
 
 @media screen and (max-width: 1100px) {
   .mobile-message {
-      position: absolute;
-      height: 100vh;
-      width: 100%;
-      background-color: rgb(0, 0, 0);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      z-index: 100;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 100;
   }
 }
 
 @media screen and (min-width: 1500px) {
   .colors-box {
-      grid-column: 10/13;
+    grid-column: 10/13;
   }
 }
 
 @media screen and (min-width: 1650px) {
   .shape-icons {
-      display: flex;
-      flex-direction: row;
+    display: flex;
+    flex-direction: row;
   }
 
   .tool-box-one,
   .tool-box-two {
-      grid-column: 4/6;
+    grid-column: 4/6;
   }
 
   .shapes-container {
-      grid-column: 6/9;
-      grid-row: 1/3;
+    grid-column: 6/9;
+    grid-row: 1/3;
   }
 
   .colors-box {
-      grid-column: 9/11;
+    grid-column: 9/11;
   }
 }

@@ -1,8 +1,5 @@
 import { getCurrentLineWidth } from "../state/state.js";
-
-function capitalizeFirstLetter(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+import { capitalizeFirstLetter } from "./helpers.js";
 
 export function renderActiveTool(name) {
   const activeTool = document.querySelector(".active-tool");
@@ -12,7 +9,7 @@ export function renderActiveTool(name) {
 export function renderLineWidth() {
   const brushSize = document.querySelector(".brush-size");
   const width = getCurrentLineWidth();
-  
+
   brushSize.textContent = width < 10 ? `0${width}` : width;
 }
 
