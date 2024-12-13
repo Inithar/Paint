@@ -1,5 +1,5 @@
 import './style.css'
 
-document.querySelector('#app').innerHTML = `
-  <div>paint</div>
-`
+import { generateToolBarMarkup } from "./components/tool-bar.js";
+
+document.querySelector('#app').innerHTML = `${generateToolBarMarkup()}`
