@@ -1,3 +1,5 @@
+import { getCurrentLineWidth } from "../state/state.js";
+
 function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -7,9 +9,11 @@ export function renderActiveTool(name) {
   activeTool.textContent = capitalizeFirstLetter(name);
 }
 
-export function renderBrushSize(size) {
+export function renderLineWidth() {
   const brushSize = document.querySelector(".brush-size");
-  brushSize.textContent = size < 10 ? `0${size}` : size;
+  const width = getCurrentLineWidth();
+  
+  brushSize.textContent = width < 10 ? `0${width}` : width;
 }
 
 export const getMousePosition = event => {

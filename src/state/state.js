@@ -41,3 +41,7 @@ export function setIsMouseDown(value) {
 export const getCurrentLineWidth = () => {
   return state.currentLineWidth;
 };
+
+export const setCurrentLineWidth = width => {
+  state.currentLineWidth = width;
+};

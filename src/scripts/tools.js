@@ -1,5 +1,5 @@
-import { renderActiveTool, renderBrushSize } from "../utils/utils.js";
-import { getCurrentTool, setCurrentTool } from "../state/state.js";
+import { renderActiveTool, renderLineWidth } from "../utils/utils.js";
+import { getCurrentTool, setCurrentLineWidth, setCurrentTool } from "../state/state.js";
 
 function handleToolSwitch(newToolName) {
   const currentToolName = getCurrentTool();
@@ -13,9 +13,16 @@ function handleToolSwitch(newToolName) {
   renderActiveTool(newToolName);
 }
 
+export function handleLineWidthChange() {
+  const lineWidthSlider = document.querySelector(".slider");
+
+  setCurrentLineWidth(lineWidthSlider.value);
+  renderLineWidth();
+}
+
 export function selectBrushTool() {
   handleToolSwitch("brush");
-  renderBrushSize();
+  renderLineWidth();
 }
 
 export function selectEraserTool() {
