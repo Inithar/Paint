@@ -43,7 +43,7 @@ export function handleCanvasMouseDown(event, context) {
   setIsMouseDown(true);
   setCanvasProperties(context);
 
-  if (currentTool === "brush") {
+  if (currentTool === "brush" || currentTool === "eraser") {
     context.moveTo(mousePosition.x, mousePosition.y);
     context.beginPath();
   }
@@ -55,7 +55,7 @@ export function handleCanvasMouseMove(event, context) {
   const currentPosition = getMousePosition(event);
   const currentTool = getCurrentTool();
 
-  if (currentTool === "brush") {
+  if (currentTool === "brush" || currentTool === "eraser") {
     context.lineTo(currentPosition.x, currentPosition.y);
     context.stroke();
   }

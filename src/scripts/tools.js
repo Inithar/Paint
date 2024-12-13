@@ -1,5 +1,11 @@
 import { renderActiveTool, renderLineWidth } from "../utils/utils.js";
-import { getCurrentTool, setCurrentLineWidth, setCurrentTool } from "../state/state.js";
+import {
+  getCurrentTool,
+  getSecondaryColor,
+  setCurrentLineWidth,
+  setCurrentTool,
+  setPrimaryColor
+} from "../state/state.js";
 
 function handleToolSwitch(newToolName) {
   const currentToolName = getCurrentTool();
@@ -27,6 +33,7 @@ export function selectBrushTool() {
 
 export function selectEraserTool() {
   handleToolSwitch("eraser");
+  setPrimaryColor(getSecondaryColor());
 }
 
 export function selectTextTool() {
