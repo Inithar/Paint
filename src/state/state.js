@@ -1,15 +1,21 @@
 export const state = {
   primaryColor: "#A51DAB",
   secondaryColor: "#FFFFFF",
-  currentTool: "brush"
+  currentTool: "brush",
+  isMouseDown: false,
+  currentLineWidth: 10
+};
+
+export const getPrimaryColor = () => {
+  return state.primaryColor;
+};
+
+export function setPrimaryColor(color) {
+  state.primaryColor = color;
 }
 
 export function getSecondaryColor() {
   return state.secondaryColor;
-}
-
-export function setPrimaryColor(color) {
-  state.primaryColor = color;
 }
 
 export function setSecondaryColor(color) {
@@ -23,3 +29,15 @@ export function getCurrentTool() {
 export function setCurrentTool(toolName) {
   state.currentTool = toolName;
 }
+
+export function getIsMouseDown() {
+  return state.isMouseDown;
+}
+
+export function setIsMouseDown(value) {
+  state.isMouseDown = value;
+}
+
+export const getCurrentLineWidth = () => {
+  return state.currentLineWidth;
+};
