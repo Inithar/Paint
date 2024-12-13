@@ -8,16 +8,18 @@ import rectangleIcon from '../icons/rectangle.svg'
 import squareIcon from '../icons/square.svg'
 import triangleIcon from '../icons/triangle.svg'
 
+import { generateToolButtonMarkup } from "./tool-button.js";
+
 export const generateToolBarMarkup = () => `
   <div class="tool-bar">
     <div class="active-tool-box">
-      <span class="active-tool">Brush</span>
+      <span class="active-tool"></span>
     </div>
 
     <div class="size-tool-box tool-box">
-      <i class="fas fa-brush" title="Brush"></i>
-      <i class="fas fa-eraser" title="Eraser"></i>
-      <i class="fab fa-tumblr" title="Text"></i>
+      ${generateToolButtonMarkup('fas fa-brush', 'Brush')}
+      ${generateToolButtonMarkup('fas fa-eraser', 'Eraser')}
+      ${generateToolButtonMarkup('fab fa-tumblr', 'Text')}
     </div>
 
     <div class="brush-size-box">

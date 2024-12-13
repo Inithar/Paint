@@ -229,6 +229,15 @@
   outline: none;
 }
 
+.tool {
+  background-color: transparent;
+  border:  1px solid transparent;
+}
+
+.tool:focus-visible {
+  border: 1px solid red;
+}
+
 .fas,
 .far,
 .fab {
