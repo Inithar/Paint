@@ -46,9 +46,19 @@ export function handleClearBtnClick(canvas, context) {
   const secondaryColorBtn = document.querySelector(".color-two");
 
   setSecondaryColor("#FFF");
-  secondaryColorBtn.style.backgroundColor = "white";
+  secondaryColorBtn.style.background = "#FFF";
+  secondaryColorBtn.value = "FFFFFF";
 
   createCanvas(canvas, context);
   renderActiveTool("clear");
+  setTimeout(selectBrushTool, 1500);
+}
+
+export function handleBackgroundBtnClick(canvas, context) {
+  const secondaryColorBtn = document.querySelector(".color-two");
+  setSecondaryColor(`#${secondaryColorBtn.value}`);
+
+  createCanvas(canvas, context);
+  renderActiveTool("background");
   setTimeout(selectBrushTool, 1500);
 }

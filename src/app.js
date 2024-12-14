@@ -2,6 +2,7 @@ import { setPrimaryColor, setSecondaryColor } from "./state/state.js";
 
 import { createCanvas, handleCanvasMouseDown, handleCanvasMouseMove, handleCanvasMouseUp } from "./scripts/canvas.js";
 import {
+  handleBackgroundBtnClick,
   handleClearBtnClick,
   handleLineWidthChange,
   selectBrushTool,
@@ -24,6 +25,7 @@ export function init() {
   const eraserBtn = document.querySelector(".eraser-btn");
   const textBtn = document.querySelector(".text-btn");
   const clearBtn = document.querySelector(".clear-btn");
+  const backgroundBtn = document.querySelector(".background-color-btn");
 
   lineWidthSlider.addEventListener("change", handleLineWidthChange);
   primaryColorBtn.addEventListener("change", () => setPrimaryColor(primaryColorBtn.value));
@@ -33,6 +35,7 @@ export function init() {
   eraserBtn.addEventListener("click", selectEraserTool);
   textBtn.addEventListener("click", selectTextTool);
   clearBtn.addEventListener("click", () => handleClearBtnClick(canvas, context));
+  backgroundBtn.addEventListener("click", () => handleBackgroundBtnClick(canvas, context));
 
   canvas.addEventListener("mousedown", e => handleCanvasMouseDown(e, context));
   canvas.addEventListener("mousemove", e => handleCanvasMouseMove(e, context));
