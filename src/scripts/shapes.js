@@ -13,6 +13,8 @@ const shapes = ["line", "square", "circle", "triangle", "rectangle", "hexagon"];
 const draw = {
   line: () => drawLine(),
   square: () => drawPolygon(4, Math.PI / 4),
+  circle: () => drawCircle(),
+  triangle: () => drawPolygon(3, Math.PI / 2),
   rectangle: () => drawPolygon(4, Math.PI / 4),
   hexagon: () => drawPolygon(6, Math.PI)
 };
@@ -86,4 +88,13 @@ function getRadius() {
     Math.pow(mouseDownPosition.x - currentMousePosition.x, 2) +
       Math.pow(mouseDownPosition.y - currentMousePosition.y, 2)
   );
+}
+
+function drawCircle() {
+  const context = getContext();
+  const mouseDownPosition = getMouseDownPosition();
+  const currentMousePosition = getCurrentMousePosition();
+
+  context.beginPath();
+  context.arc(mouseDownPosition.x, mouseDownPosition.y, getRadius(currentMousePosition), 0, 2 * Math.PI, false);
 }
