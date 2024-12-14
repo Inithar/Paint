@@ -228,12 +228,12 @@
   outline: none;
 }
 
-.tool {
+.tool, .shape {
   background-color: transparent;
   border: 1px solid transparent;
 }
 
-.tool:focus-visible {
+.tool:focus-visible, .shape:focus-visible {
   border: 1px solid red;
 }
 

@@ -53,15 +53,27 @@ export const generateToolBarMarkup = () => `
         <div class="shapes-box-content">
           <div class="shape-icons">
             <div class="shape-icons-one">
-              <img class="shape-icon" src="${lineIcon}" alt="Line icon" />
-              <img class="shape-icon" src="${squareIcon}" alt="Square icon" />
-              <img class="shape-icon" src="${circleIcon}" alt="Circle icon" />
+              <button class="shape shape-1">
+                <img class="shape-icon" src="${lineIcon}" alt="Line icon" />
+              </button>
+              <button class="shape shape-2">
+                <img class="shape-icon" src="${squareIcon}" alt="Square icon" />
+              </button>
+              <button class="shape shape-3">
+                <img class="shape-icon" src="${circleIcon}" alt="Circle icon" />
+              </button>
             </div>
             
             <div class="shape-icons-two">
-              <img class="shape-icon" src="${triangleIcon}" alt="Triangle icon" />
-              <img class="shape-icon" src="${rectangleIcon}" alt="Rectangle icon" />
-              <img class="shape-icon" src="${hexagonIcon}" alt="Hexagon icon" />
+              <button class="shape shape-4">
+                <img class="shape-icon" src="${triangleIcon}" alt="Triangle icon" />
+              </button>
+              <button class="shape shape-5">
+                <img class="shape-icon" src="${rectangleIcon}" alt="Rectangle icon" />
+              </button>
+              <button class="shape shape-6">
+                <img class="shape-icon" src="${hexagonIcon}" alt="Hexagon icon" />
+              </button>
             </div>
           </div>
           

@@ -1,6 +1,8 @@
 import { createCanvas } from "./canvas.js";
 import { renderActiveTool, renderLineWidth, printLetter } from "../utils/utils.js";
 import {
+  getCanvas,
+  getContext,
   getCurrentTool,
   getSecondaryColor,
   setCurrentLineWidth,
@@ -9,13 +11,21 @@ import {
   setSecondaryColor
 } from "../state/state.js";
 
-function handleToolSwitch(newToolName) {
+export function handleToolSwitch(newToolName) {
   const currentToolName = getCurrentTool();
   const currentToolIconNode = document.querySelector(`.${currentToolName}-btn > i`);
   const newToolIconNode = document.querySelector(`.${newToolName}-btn > i`);
 
-  currentToolIconNode.style.color = "white";
-  newToolIconNode.style.color = "black";
+  if (currentToolIconNode) {
+    currentToolIconNode.style.color = "white";
+  }
+
+  if (newToolName === "brush" || newToolName === "eraser" || newToolName === "text") {
+    newToolIconNode.style.color = "black";
+  }
+
+  const shapeIcons = document.querySelectorAll(".shape > img");
+  shapeIcons.forEach(shape => (shape.style.border = "2px solid rgb(82, 82, 82)"));
 
   setCurrentTool(newToolName);
   renderActiveTool(newToolName);
@@ -40,12 +50,14 @@ export function selectEraserTool() {
 
 export function selectTextTool() {
   const primaryColorBtn = document.querySelector(".color-one");
-  
+
   setPrimaryColor(primaryColorBtn.value);
   handleToolSwitch("text");
 }
 
-export function handleClearBtnClick(canvas, context) {
+export function handleClearBtnClick() {
+  const canvas = getCanvas();
+  const context = getContext();
   const secondaryColorBtn = document.querySelector(".color-two");
 
   setSecondaryColor("#FFF");
@@ -57,7 +69,10 @@ export function handleClearBtnClick(canvas, context) {
   setTimeout(selectBrushTool, 1500);
 }
 
-export function handleBackgroundBtnClick(canvas, context) {
+export function handleBackgroundBtnClick() {
+  const canvas = getCanvas();
+  const context = getContext();
+
   const secondaryColorBtn = document.querySelector(".color-two");
   setSecondaryColor(`#${secondaryColorBtn.value}`);
 
@@ -66,8 +81,9 @@ export function handleBackgroundBtnClick(canvas, context) {
   setTimeout(selectBrushTool, 1500);
 }
 
-export function handleKeyDown(e, context) {
+export function handleKeyDown(e) {
   if (getCurrentTool() === "text") {
+    const context = getContext();
     printLetter(e, context);
   }
 }

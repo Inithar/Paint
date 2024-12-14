@@ -1,4 +1,5 @@
 import {
+  getContext,
   getCurrentLineWidth,
   getCurrentMousePosition,
   getMouseDownPosition,
@@ -19,16 +20,18 @@ export function renderLineWidth() {
   brushSize.textContent = width < 10 ? `0${width}` : width;
 }
 
-export function getMousePosition(event) {
+export function getMousePosition(e) {
   const boundaries = canvas.getBoundingClientRect();
 
   return {
-    x: event.clientX - boundaries.left,
-    y: event.clientY - boundaries.top
+    x: e.clientX - boundaries.left,
+    y: e.clientY - boundaries.top
   };
 }
 
-export function printLetter(e, context) {
+export function printLetter(e) {
+  const context = getContext();
+
   if (e.key === "Enter") {
     const lineWidth = getCurrentLineWidth() + 4;
     const { x, y } = getMouseDownPosition();

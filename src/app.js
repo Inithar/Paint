@@ -1,5 +1,5 @@
 import { setPrimaryColor, setSecondaryColor } from "./state/state.js";
-
+import { handleShapeButtonClick } from "./scripts/shapes.js";
 import { createCanvas, handleCanvasMouseDown, handleCanvasMouseMove, handleCanvasMouseUp } from "./scripts/canvas.js";
 import {
   handleBackgroundBtnClick,
@@ -12,11 +12,7 @@ import {
 } from "./scripts/tools.js";
 
 export function init() {
-  const canvas = document.createElement("canvas");
-  canvas.id = "canvas";
-  const context = canvas.getContext("2d");
-
-  createCanvas(canvas, context);
+  createCanvas();
 
   const lineWidthSlider = document.querySelector(".slider");
   const primaryColorBtn = document.querySelector(".color-one");
@@ -27,6 +23,7 @@ export function init() {
   const textBtn = document.querySelector(".text-btn");
   const clearBtn = document.querySelector(".clear-btn");
   const backgroundBtn = document.querySelector(".background-color-btn");
+  const shapeBtns = document.querySelectorAll(".shape");
 
   lineWidthSlider.addEventListener("change", handleLineWidthChange);
   primaryColorBtn.addEventListener("change", () => setPrimaryColor(primaryColorBtn.value));
@@ -35,12 +32,16 @@ export function init() {
   brushBtn.addEventListener("click", selectBrushTool);
   eraserBtn.addEventListener("click", selectEraserTool);
   textBtn.addEventListener("click", selectTextTool);
-  clearBtn.addEventListener("click", () => handleClearBtnClick(canvas, context));
-  backgroundBtn.addEventListener("click", () => handleBackgroundBtnClick(canvas, context));
+  clearBtn.addEventListener("click", handleClearBtnClick);
+  backgroundBtn.addEventListener("click", handleBackgroundBtnClick);
 
-  canvas.addEventListener("mousedown", e => handleCanvasMouseDown(e, context));
-  canvas.addEventListener("mousemove", e => handleCanvasMouseMove(e, context));
+  shapeBtns.forEach((shape, index) => {
+    shape.addEventListener("click", () => handleShapeButtonClick(index));
+  });
+
+  canvas.addEventListener("mousedown", handleCanvasMouseDown);
+  canvas.addEventListener("mousemove", handleCanvasMouseMove);
   canvas.addEventListener("mouseup", handleCanvasMouseUp);
 
-  document.addEventListener("keydown", e => handleKeyDown(e, context));
+  document.addEventListener("keydown", handleKeyDown);
 }
