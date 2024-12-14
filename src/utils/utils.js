@@ -1,4 +1,10 @@
-import { getCurrentLineWidth } from "../state/state.js";
+import {
+  getCurrentLineWidth,
+  getCurrentMousePosition,
+  getMouseDownPosition,
+  setCurrentMousePosition,
+  setRecentWords
+} from "../state/state.js";
 import { capitalizeFirstLetter } from "./helpers.js";
 
 export function renderActiveTool(name) {
@@ -13,11 +19,26 @@ export function renderLineWidth() {
   brushSize.textContent = width < 10 ? `0${width}` : width;
 }
 
-export const getMousePosition = event => {
+export function getMousePosition(event) {
   const boundaries = canvas.getBoundingClientRect();
 
   return {
     x: event.clientX - boundaries.left,
     y: event.clientY - boundaries.top
   };
-};
+}
+
+export function printLetter(e, context) {
+  if (e.key === "Enter") {
+    const lineWidth = getCurrentLineWidth() + 4;
+    const { x, y } = getMouseDownPosition();
+
+    return setCurrentMousePosition({ x, y: y + lineWidth });
+  }
+
+  const currentPosition = getCurrentMousePosition();
+  context.fillText(e.key, currentPosition.x, currentPosition.y);
+
+  setCurrentMousePosition({ x: currentPosition.x + context.measureText(e.key).width, y: currentPosition.y });
+  setRecentWords(recentWords => [...recentWords, e.key]);
+}

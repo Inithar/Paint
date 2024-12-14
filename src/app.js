@@ -4,6 +4,7 @@ import { createCanvas, handleCanvasMouseDown, handleCanvasMouseMove, handleCanva
 import {
   handleBackgroundBtnClick,
   handleClearBtnClick,
+  handleKeyDown,
   handleLineWidthChange,
   selectBrushTool,
   selectEraserTool,
@@ -40,4 +41,6 @@ export function init() {
   canvas.addEventListener("mousedown", e => handleCanvasMouseDown(e, context));
   canvas.addEventListener("mousemove", e => handleCanvasMouseMove(e, context));
   canvas.addEventListener("mouseup", handleCanvasMouseUp);
+
+  document.addEventListener("keydown", e => handleKeyDown(e, context));
 }

@@ -6,8 +6,30 @@ import {
   getIsMouseDown,
   getPrimaryColor,
   getSecondaryColor,
-  setIsMouseDown
+  setCurrentMousePosition,
+  setIsMouseDown,
+  setMouseDownPosition,
+  setRecentWords
 } from "../state/state.js";
+
+function setCanvasProperties(
+  context,
+  {
+    lineWidth = getCurrentLineWidth(),
+    lineCap = "round",
+    strokeStyle = getPrimaryColor(),
+    font = `${getCurrentLineWidth()}px serif`,
+    fillStyle = getPrimaryColor()
+  } = {}
+) {
+  console.log(lineWidth, lineCap, strokeStyle, font, fillStyle);
+
+  context.lineWidth = lineWidth;
+  context.lineCap = lineCap;
+  context.strokeStyle = `#${strokeStyle}`;
+  context.font = font;
+  context.fillStyle = `#${fillStyle}`;
+}
 
 export function createCanvas(canvas, context) {
   canvas.width = window.innerWidth;
@@ -19,28 +41,15 @@ export function createCanvas(canvas, context) {
   selectBrushTool();
 }
 
-function setCanvasProperties(
-  context,
-  {
-    lineWidth = getCurrentLineWidth(),
-    lineCap = "round",
-    strokeStyle = getPrimaryColor(),
-    font = `${getCurrentLineWidth}px serif`,
-    fillStyle = getPrimaryColor()
-  } = {}
-) {
-  context.lineWidth = lineWidth;
-  context.lineCap = lineCap;
-  context.strokeStyle = strokeStyle;
-  context.font = font;
-  context.fillStyle = fillStyle;
-}
-
 export function handleCanvasMouseDown(event, context) {
   const mousePosition = getMousePosition(event);
   const currentTool = getCurrentTool();
 
+  console.log("test");
+
   setIsMouseDown(true);
+  setMouseDownPosition(mousePosition);
+  setRecentWords([]);
   setCanvasProperties(context);
 
   if (currentTool === "brush" || currentTool === "eraser") {

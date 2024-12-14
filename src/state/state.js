@@ -2,8 +2,11 @@ export const state = {
   primaryColor: "#A51DAB",
   secondaryColor: "#FFFFFF",
   currentTool: "brush",
+  currentLineWidth: 10,
+  recentWords: [],
   isMouseDown: false,
-  currentLineWidth: 10
+  mouseDownPosition: {},
+  currentMousePosition: {}
 };
 
 export const getPrimaryColor = () => {
@@ -45,3 +48,33 @@ export const getCurrentLineWidth = () => {
 export const setCurrentLineWidth = width => {
   state.currentLineWidth = width;
 };
+
+export const getRecentWords = () => {
+  return state.recentWords;
+};
+
+export const setRecentWords = value => {
+  if (typeof value === "function") {
+    state.recentWords = value(state.recentWords);
+    return;
+  }
+
+  state.recentWords = value;
+};
+
+export const getMouseDownPosition = () => {
+  return state.mouseDownPosition;
+};
+
+export const setMouseDownPosition = position => {
+  state.mouseDownPosition = position;
+  state.currentMousePosition = position;
+};
+
+export const getCurrentMousePosition = () => {
+  return state.currentMousePosition;
+};
+
+export function setCurrentMousePosition(position) {
+  state.currentMousePosition = position;
+}

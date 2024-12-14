@@ -1,4 +1,5 @@
-import { renderActiveTool, renderLineWidth } from "../utils/utils.js";
+import { createCanvas } from "./canvas.js";
+import { renderActiveTool, renderLineWidth, printLetter } from "../utils/utils.js";
 import {
   getCurrentTool,
   getSecondaryColor,
@@ -7,7 +8,6 @@ import {
   setPrimaryColor,
   setSecondaryColor
 } from "../state/state.js";
-import { createCanvas } from "./canvas.js";
 
 function handleToolSwitch(newToolName) {
   const currentToolName = getCurrentTool();
@@ -39,6 +39,9 @@ export function selectEraserTool() {
 }
 
 export function selectTextTool() {
+  const primaryColorBtn = document.querySelector(".color-one");
+  
+  setPrimaryColor(primaryColorBtn.value);
   handleToolSwitch("text");
 }
 
@@ -61,4 +64,10 @@ export function handleBackgroundBtnClick(canvas, context) {
   createCanvas(canvas, context);
   renderActiveTool("background");
   setTimeout(selectBrushTool, 1500);
+}
+
+export function handleKeyDown(e, context) {
+  if (getCurrentTool() === "text") {
+    printLetter(e, context);
+  }
 }
