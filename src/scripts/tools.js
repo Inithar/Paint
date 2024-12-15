@@ -1,4 +1,4 @@
-import { createCanvas, restoreCanvas, setDefaultCanvasProperties } from "./canvas.js";
+import { setDefaultCanvasProperties } from "./canvas.js";
 import { renderActiveTool, renderLineWidth, printLetter, undo } from "../utils/utils.js";
 import {
   getCanvas,
@@ -12,8 +12,7 @@ import {
   setCurrentLineWidth,
   setCurrentTool,
   setPrimaryColor,
-  setSecondaryColor,
-  setUndoList
+  setSecondaryColor
 } from "../state/state.js";
 
 export function handleToolSwitch(newToolName) {
@@ -50,7 +49,9 @@ export function selectBrushTool() {
 
 export function selectEraserTool() {
   handleToolSwitch("eraser");
-  setPrimaryColor(getSecondaryColor());
+
+  const secondaryColorBtn = document.querySelector(".color-two");
+  setPrimaryColor(secondaryColorBtn.value);
 }
 
 export function selectTextTool() {
@@ -81,11 +82,15 @@ export function handleBackgroundBtnClick() {
   const context = getContext();
 
   const secondaryColorBtn = document.querySelector(".color-two");
-  setSecondaryColor(`#${secondaryColorBtn.value}`);
+  setSecondaryColor(secondaryColorBtn.value);
 
-  createCanvas(canvas, context);
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  context.fillStyle = getSecondaryColor();
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
   renderActiveTool("background");
-  setTimeout(selectBrushTool, 1500);
+  setTimeout(selectBrushTool, 500);
 }
 
 export function handleKeyDown(e) {

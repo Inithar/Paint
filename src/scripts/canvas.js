@@ -43,6 +43,8 @@ function setCanvasProperties({
 } = {}) {
   const context = getContext();
 
+  console.log(strokeStyle);
+
   context.lineWidth = lineWidth;
   context.lineCap = lineCap;
   context.strokeStyle = strokeStyle;
@@ -118,11 +120,7 @@ export function handleCanvasMouseUp(e) {
   }
 
   setIsMouseDown(false);
-  setUndoList(prev => {
-    console.log([...prev, canvas.toDataURL()]);
-
-    return [...prev, canvas.toDataURL()];
-  });
+  setUndoList(prev => [...prev, canvas.toDataURL()]);
 }
 
 export function takeSnapshot() {
