@@ -4,6 +4,7 @@ import {
   getCurrentMousePosition,
   getCurrentShape,
   getMouseDownPosition,
+  getSecondaryColor,
   setCurrentShape,
   setPrimaryColor
 } from "../state/state.js";
@@ -32,12 +33,17 @@ export function handleShapeButtonClick(shapeNumber) {
 
 export function drawShape() {
   const isOutline = document.querySelector(".outline-checkbox").checked;
+  const isFilled = document.querySelector(".fill-checkbox").checked;
   const currentShape = getCurrentShape();
   const context = getContext();
 
   draw[currentShape]();
 
   if (isOutline) context.stroke();
+  if (isFilled) {
+    context.fillStyle = getSecondaryColor();
+    context.fill();
+  }
 }
 
 function drawLine() {
@@ -66,7 +72,6 @@ function drawPolygon(sides, angle) {
     const y = mouseDownPosition.y - radius * Math.sin(currentAngle);
 
     coordinates.push({ x, y });
-
     currentAngle += (2 * Math.PI) / sides;
   }
 

@@ -1,4 +1,4 @@
-import { createCanvas } from "./canvas.js";
+import { createCanvas, setDefaultCanvasProperties } from "./canvas.js";
 import { renderActiveTool, renderLineWidth, printLetter } from "../utils/utils.js";
 import {
   getCanvas,
@@ -56,17 +56,19 @@ export function selectTextTool() {
 }
 
 export function handleClearBtnClick() {
-  const canvas = getCanvas();
-  const context = getContext();
+  const primaryColorBtn = document.querySelector(".color-one");
   const secondaryColorBtn = document.querySelector(".color-two");
 
-  setSecondaryColor("#FFF");
-  secondaryColorBtn.style.background = "#FFF";
+  setPrimaryColor("A51DAB");
+  primaryColorBtn.style.background = "#A51DAB";
+  primaryColorBtn.value = "A51DAB";
+
+  setSecondaryColor("FFFFFF");
+  secondaryColorBtn.style.background = "#FFFFFF";
   secondaryColorBtn.value = "FFFFFF";
 
-  createCanvas(canvas, context);
-  renderActiveTool("clear");
-  setTimeout(selectBrushTool, 1500);
+  setDefaultCanvasProperties();
+  selectBrushTool();
 }
 
 export function handleBackgroundBtnClick() {

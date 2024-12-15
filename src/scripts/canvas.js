@@ -18,6 +18,21 @@ import {
   setSnapshot
 } from "../state/state.js";
 
+export function setDefaultCanvasProperties() {
+  const canvas = getCanvas();
+  const context = getContext();
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  context.fillStyle = "white";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.lineWidth = 10;
+  context.lineCap = "round";
+  context.strokeStyle = "#A51DAB";
+  context.font = `10px serif`;
+  context.fillStyle = "#FFFFFF";
+}
+
 function setCanvasProperties({
   lineWidth = getCurrentLineWidth(),
   lineCap = "round",
@@ -26,6 +41,7 @@ function setCanvasProperties({
   fillStyle = getPrimaryColor()
 } = {}) {
   const context = getContext();
+
   context.lineWidth = lineWidth;
   context.lineCap = lineCap;
   context.strokeStyle = strokeStyle;

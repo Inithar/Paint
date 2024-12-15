@@ -34,7 +34,7 @@ export const getPrimaryColor = () => {
 };
 
 export function setPrimaryColor(color) {
-  state.primaryColor = color;
+  state.primaryColor = `#${color}`;
 }
 
 export function getSecondaryColor() {
@@ -42,7 +42,7 @@ export function getSecondaryColor() {
 }
 
 export function setSecondaryColor(color) {
-  state.secondaryColor = color;
+  state.secondaryColor = `#${color}`;
 }
 
 export function getCurrentTool() {
