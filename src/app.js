@@ -12,6 +12,7 @@ import {
   selectImage,
   handleDownloadBtnClick
 } from "./scripts/tools.js";
+import { handleLocalStorageSave, handleLocalStorageLoad, handleLocalStorageClear } from "./scripts/local-storage.js";
 
 export function init() {
   createCanvas();
@@ -29,6 +30,10 @@ export function init() {
   const uploadPhotoBtn = document.querySelector(".upload-photo-btn");
   const downloadBtn = document.querySelector(".download");
 
+  const saveStorageBtn = document.querySelector(".save-local-storage-btn");
+  const loadStorageBtn = document.querySelector(".load-local-storage-btn");
+  const clearStorageBtn = document.querySelector(".clear-local-storage-btn");
+
   lineWidthSlider.addEventListener("change", handleLineWidthChange);
   primaryColorBtn.addEventListener("change", () => setPrimaryColor(primaryColorBtn.value));
   secondaryColorBtn.addEventListener("change", () => setSecondaryColor(secondaryColorBtn.value));
@@ -40,10 +45,13 @@ export function init() {
   backgroundBtn.addEventListener("click", handleBackgroundBtnClick);
   uploadPhotoBtn.addEventListener("change", selectImage);
   downloadBtn.addEventListener("click", handleDownloadBtnClick);
-
   shapeBtns.forEach((shape, index) => {
     shape.addEventListener("click", () => handleShapeButtonClick(index));
   });
+
+  saveStorageBtn.addEventListener("click", handleLocalStorageSave);
+  loadStorageBtn.addEventListener("click", handleLocalStorageLoad);
+  clearStorageBtn.addEventListener("click", handleLocalStorageClear);
 
   canvas.addEventListener("mousedown", handleCanvasMouseDown);
   canvas.addEventListener("mousemove", handleCanvasMouseMove);

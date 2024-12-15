@@ -130,3 +130,15 @@ export function restoreSnapshot() {
 
   context.putImageData(snapshot, 0, 0);
 }
+
+export function restoreCanvas(img) {
+  const canvas = getCanvas();
+  const context = getContext();
+  const image = new Image();
+
+  image.src = img;
+  image.onload = () => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(image, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
+  };
+}
