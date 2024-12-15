@@ -11,7 +11,8 @@ export const state = {
   mouseDownPosition: {},
   currentMousePosition: {},
   snapshot: null,
-  currentImage: null
+  currentImage: null,
+  undoList: []
 };
 
 export function getCanvas() {
@@ -122,4 +123,17 @@ export function getCurrentImage() {
 
 export function setCurrentImage(image) {
   state.currentImage = image;
+}
+
+export function getUndoList() {
+  return state.undoList;
+}
+
+export function setUndoList(value) {
+  if (typeof value === "function") {
+    state.undoList = value(state.undoList);
+    return;
+  }
+
+  state.undoList = value;
 }

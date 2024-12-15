@@ -4,10 +4,13 @@ import {
   getCurrentLineWidth,
   getCurrentMousePosition,
   getMouseDownPosition,
+  getUndoList,
   setCurrentMousePosition,
-  setRecentWords
+  setRecentWords,
+  setUndoList
 } from "../state/state.js";
 import { capitalizeFirstLetter } from "./helpers.js";
+import { restoreCanvas } from "../scripts/canvas.js";
 
 export function renderActiveTool(name) {
   const activeTool = document.querySelector(".active-tool");
@@ -46,4 +49,12 @@ export function printLetter(e) {
 
   setCurrentMousePosition({ x: currentPosition.x + context.measureText(e.key).width, y: currentPosition.y });
   setRecentWords(recentWords => [...recentWords, e.key]);
+}
+
+export function undo() {
+  setUndoList(prev => prev.filter((item, index) => index !== prev.length - 1));
+
+  const undoList = getUndoList();
+  const imgData = undoList[undoList.length - 1];
+  restoreCanvas(imgData);
 }

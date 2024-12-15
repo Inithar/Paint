@@ -1,4 +1,4 @@
-import { setPrimaryColor, setSecondaryColor } from "./state/state.js";
+import { getCanvas, setPrimaryColor, setSecondaryColor, setUndoList } from "./state/state.js";
 import { handleShapeButtonClick } from "./scripts/shapes.js";
 import { createCanvas, handleCanvasMouseDown, handleCanvasMouseMove, handleCanvasMouseUp } from "./scripts/canvas.js";
 import {
@@ -10,7 +10,8 @@ import {
   selectEraserTool,
   selectTextTool,
   selectImage,
-  handleDownloadBtnClick
+  handleDownloadBtnClick,
+  handleUndoBtnClick
 } from "./scripts/tools.js";
 import { handleLocalStorageSave, handleLocalStorageLoad, handleLocalStorageClear } from "./scripts/local-storage.js";
 
@@ -29,6 +30,7 @@ export function init() {
   const shapeBtns = document.querySelectorAll(".shape");
   const uploadPhotoBtn = document.querySelector(".upload-photo-btn");
   const downloadBtn = document.querySelector(".download");
+  const undoBtn = document.querySelector(".undo-btn");
 
   const saveStorageBtn = document.querySelector(".save-local-storage-btn");
   const loadStorageBtn = document.querySelector(".load-local-storage-btn");
@@ -45,6 +47,7 @@ export function init() {
   backgroundBtn.addEventListener("click", handleBackgroundBtnClick);
   uploadPhotoBtn.addEventListener("change", selectImage);
   downloadBtn.addEventListener("click", handleDownloadBtnClick);
+  undoBtn.addEventListener("click", handleUndoBtnClick);
   shapeBtns.forEach((shape, index) => {
     shape.addEventListener("click", () => handleShapeButtonClick(index));
   });

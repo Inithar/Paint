@@ -15,7 +15,8 @@ import {
   setIsMouseDown,
   setMouseDownPosition,
   setRecentWords,
-  setSnapshot
+  setSnapshot,
+  setUndoList
 } from "../state/state.js";
 
 export function setDefaultCanvasProperties() {
@@ -64,6 +65,7 @@ export function createCanvas() {
 
   setCanvasProperties();
   selectBrushTool();
+  setUndoList([canvas.toDataURL()]);
 
   document.body.appendChild(canvas);
 }
@@ -107,6 +109,7 @@ export function handleCanvasMouseMove(event) {
 }
 
 export function handleCanvasMouseUp(e) {
+  const canvas = getCanvas();
   const currentTool = getCurrentTool();
 
   if (currentTool === "shape") {
@@ -115,6 +118,11 @@ export function handleCanvasMouseUp(e) {
   }
 
   setIsMouseDown(false);
+  setUndoList(prev => {
+    console.log([...prev, canvas.toDataURL()]);
+
+    return [...prev, canvas.toDataURL()];
+  });
 }
 
 export function takeSnapshot() {

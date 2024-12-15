@@ -1,5 +1,5 @@
-import { createCanvas, setDefaultCanvasProperties } from "./canvas.js";
-import { renderActiveTool, renderLineWidth, printLetter } from "../utils/utils.js";
+import { createCanvas, restoreCanvas, setDefaultCanvasProperties } from "./canvas.js";
+import { renderActiveTool, renderLineWidth, printLetter, undo } from "../utils/utils.js";
 import {
   getCanvas,
   getContext,
@@ -7,11 +7,13 @@ import {
   getCurrentTool,
   getMouseDownPosition,
   getSecondaryColor,
+  getUndoList,
   setCurrentImage,
   setCurrentLineWidth,
   setCurrentTool,
   setPrimaryColor,
-  setSecondaryColor
+  setSecondaryColor,
+  setUndoList
 } from "../state/state.js";
 
 export function handleToolSwitch(newToolName) {
@@ -121,4 +123,13 @@ export function handleDownloadBtnClick() {
 
   downloadBtn.href = canvas.toDataURL("image/jpeg", 1);
   downloadBtn.download = "paint.jpeg";
+}
+
+export function handleUndoBtnClick() {
+  const undoList = getUndoList();
+
+  if (undoList.length > 1) undo();
+
+  handleToolSwitch("undo");
+  setTimeout(selectBrushTool, 500);
 }
