@@ -10,7 +10,8 @@ export const state = {
   isMouseDown: false,
   mouseDownPosition: {},
   currentMousePosition: {},
-  snapshot: null
+  snapshot: null,
+  currentImage: null
 };
 
 export function getCanvas() {
@@ -113,4 +114,12 @@ export function getSnapshot() {
 
 export function setSnapshot(snapshot) {
   state.snapshot = snapshot;
+}
+
+export function getCurrentImage() {
+  return state.currentImage;
+}
+
+export function setCurrentImage(image) {
+  state.currentImage = image;
 }

@@ -1,4 +1,4 @@
-import { selectBrushTool } from "./tools.js";
+import { selectBrushTool, uploadImage } from "./tools.js";
 import { getMousePosition } from "../utils/utils.js";
 import { drawShape } from "./shapes.js";
 import {
@@ -84,6 +84,7 @@ export function handleCanvasMouseDown(event) {
   }
 
   if (currentTool === "shape") takeSnapshot();
+  if (currentTool === "photo") uploadImage();
 }
 
 export function handleCanvasMouseMove(event) {

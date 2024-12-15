@@ -8,7 +8,8 @@ import {
   handleLineWidthChange,
   selectBrushTool,
   selectEraserTool,
-  selectTextTool
+  selectTextTool,
+  selectImage
 } from "./scripts/tools.js";
 
 export function init() {
@@ -24,6 +25,7 @@ export function init() {
   const clearBtn = document.querySelector(".clear-btn");
   const backgroundBtn = document.querySelector(".background-color-btn");
   const shapeBtns = document.querySelectorAll(".shape");
+  const uploadPhotoBtn = document.querySelector(".upload-photo-btn");
 
   lineWidthSlider.addEventListener("change", handleLineWidthChange);
   primaryColorBtn.addEventListener("change", () => setPrimaryColor(primaryColorBtn.value));
@@ -34,6 +36,7 @@ export function init() {
   textBtn.addEventListener("click", selectTextTool);
   clearBtn.addEventListener("click", handleClearBtnClick);
   backgroundBtn.addEventListener("click", handleBackgroundBtnClick);
+  uploadPhotoBtn.addEventListener("change", selectImage);
 
   shapeBtns.forEach((shape, index) => {
     shape.addEventListener("click", () => handleShapeButtonClick(index));

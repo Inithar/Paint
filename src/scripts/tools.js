@@ -3,8 +3,11 @@ import { renderActiveTool, renderLineWidth, printLetter } from "../utils/utils.j
 import {
   getCanvas,
   getContext,
+  getCurrentImage,
   getCurrentTool,
+  getMouseDownPosition,
   getSecondaryColor,
+  setCurrentImage,
   setCurrentLineWidth,
   setCurrentTool,
   setPrimaryColor,
@@ -88,4 +91,26 @@ export function handleKeyDown(e) {
     const context = getContext();
     printLetter(e, context);
   }
+}
+
+export function selectImage(e) {
+  handleToolSwitch("photo");
+
+  const img = new Image();
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    img.src = reader.result;
+  };
+
+  setCurrentImage(img);
+  reader.readAsDataURL(e.target.files[0]);
+}
+
+export function uploadImage() {
+  const context = getContext();
+  const mouseDownPosition = getMouseDownPosition();
+  const currentImage = getCurrentImage();
+
+  context.drawImage(currentImage, mouseDownPosition.x, mouseDownPosition.y);
 }

@@ -1,4 +1,5 @@
 import {
+  getCanvas,
   getContext,
   getCurrentLineWidth,
   getCurrentMousePosition,
@@ -21,6 +22,7 @@ export function renderLineWidth() {
 }
 
 export function getMousePosition(e) {
+  const canvas = getCanvas();
   const boundaries = canvas.getBoundingClientRect();
 
   return {
