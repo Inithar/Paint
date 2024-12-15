@@ -105,4 +105,8 @@ export const generateToolBarMarkup = () => `
       </div>
     </div>
   </div>
+  
+  <div class="mobile-message">
+    <h2>Please use application on larger screen</h2>
+  </div>
 `;
