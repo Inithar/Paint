@@ -1,4 +1,4 @@
-import { getCanvas, setPrimaryColor, setSecondaryColor, setUndoList } from "./state/state.js";
+import { setPrimaryColor, setSecondaryColor } from "./state/state.js";
 import { handleShapeButtonClick } from "./scripts/shapes.js";
 import { createCanvas, handleCanvasMouseDown, handleCanvasMouseMove, handleCanvasMouseUp } from "./scripts/canvas.js";
 import {
