@@ -114,3 +114,11 @@ export function uploadImage() {
 
   context.drawImage(currentImage, mouseDownPosition.x, mouseDownPosition.y);
 }
+
+export function handleDownloadBtnClick() {
+  const canvas = getCanvas();
+  const downloadBtn = document.querySelector(".download");
+
+  downloadBtn.href = canvas.toDataURL("image/jpeg", 1);
+  downloadBtn.download = "paint.jpeg";
+}
